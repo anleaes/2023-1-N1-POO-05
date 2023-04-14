@@ -1,0 +1,49 @@
+@startuml Cinema
+
+class Cinema {
+
+    -salas Salas
+    -ingresso Ingresso
+    +construct(salas, filmes)
+    +comprar_ingresso(ingresso)
+}
+
+class Salas {
+
+    -id int 
+    -num_sala Int 
+    -poltrona Int 
+    -filme Filme 
+    -ingresso Ingresso 
+    +construct(id, num_sala, poltrona, ingresso)
+    +exibir_filme(filme)
+}
+
+class Filme {
+
+    -id Int 
+    -diretor String 
+    -duracao Int 
+    -genero String 
+    -atores String 
+    +construct(id, diretor, duracao, genero, atores)
+
+}
+
+class Ingresso {
+
+    -id Int 
+    -num_ingresso Int 
+    -sala Int
+    -filme String
+    +construct(id, num_ingresso, sala, filme)
+}
+
+
+Cinema <-- Salas 
+Cinema <-- Ingresso 
+Salas <-- Filme 
+
+
+
+@enduml 
