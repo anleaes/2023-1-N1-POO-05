@@ -1,48 +1,75 @@
 @startuml Cinema
 
 class Cinema {
-
-    -salas Salas
-    -ingresso Ingresso
-    +construct(salas, filmes)
+    
+    -nome: String
+    -salas: Salas
+    -ingresso: Ingresso
+    -cliente: String
+    +construct(salas, ingresso)
     +comprar_ingresso(ingresso)
+    +registrar_cliente(cliente)
 }
 
 class Salas {
 
-    -id int 
-    -num_sala Int 
-    -poltrona Int 
-    -filme Filme 
-    -ingresso Ingresso 
-    +construct(id, num_sala, poltrona, ingresso)
+    -filme: string 
+    -num_sala: Int 
+    -poltrona: Int 
+    +construct(num_sala, poltrona)
     +exibir_filme(filme)
 }
 
 class Filme {
 
-    -id Int 
-    -diretor String 
-    -duracao Int 
-    -genero String 
-    -atores String 
-    +construct(id, diretor, duracao, genero, atores)
+    -titulo: String
+    -duracao: Int 
+    -categoria: String 
+
+    +construct(titulo, duracao, categoria)
 
 }
 
 class Ingresso {
 
-    -id Int 
-    -num_ingresso Int 
-    -sala Int
-    -filme String
-    +construct(id, num_ingresso, sala, filme)
+    -num_ingresso: Int 
+    -num_sala: Int
+    -titulo_filme: String
+    -preco: Float
+    -num_poltrona: Int
+    +construct(num_ingresso, num_poltrona, num_sala, titulo_filme, preco)
+}
+
+class Pessoa {
+
+    -nome: String 
+    -data_nascimento: Date
+    -endereco: String  
+    +construct(nome, data_nascimento, endereco)
+}
+
+class Pessoa_Fisisca {
+
+    -cpf: Int
+    +construct(pessoa, cpf)
+    +validar_cpf(cpf)
+}
+
+class Pessoa_Juridica {
+    
+    -cnpj: Int 
+    +construct(pessoa, cnpj)
+    +validar_cnpj(cnpj)
 }
 
 
-Cinema <-- Salas 
+Cinema <-- Salas
 Cinema <-- Ingresso 
-Salas <-- Filme 
+Salas <|-- Filme   
+Cinema <-- Pessoa 
+Pessoa <|-- Pessoa_Fisisca
+Pessoa <|-- Pessoa_Juridica
+
 
 
 
