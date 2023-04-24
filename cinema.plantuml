@@ -3,20 +3,18 @@
 class Cinema {
     
     -nome: String
-    -salas: Salas
-    -ingresso: Ingresso
+    -salas: int 
     -cliente: String
-    +construct(salas, ingresso)
-    +comprar_ingresso(ingresso)
+    +construtor(salas)
     +registrar_cliente(cliente)
 }
 
 class Salas {
 
-    -filme: string 
+    -filme: Filme
     -num_sala: Int 
-    -poltrona: Int 
-    +construct(num_sala, poltrona)
+    -poltronas: Int 
+    +construtor(num_sala, poltrona)
     +exibir_filme(filme)
 }
 
@@ -25,8 +23,8 @@ class Filme {
     -titulo: String
     -duracao: Int 
     -categoria: String 
-
-    +construct(titulo, duracao, categoria)
+    -classificacao: String 
+    +construtor(titulo, duracao, categoria, classificacao)
 
 }
 
@@ -36,8 +34,9 @@ class Ingresso {
     -num_sala: Int
     -titulo_filme: String
     -preco: Float
-    -num_poltrona: Int
-    +construct(num_ingresso, num_poltrona, num_sala, titulo_filme, preco)
+    -poltrona: Int
+    +construtor(num_ingresso, poltrona, num_sala, titulo_filme, preco)
+    +comprar_ingresso(num_ingresso, poltrona, num_sala, titulo_filme, preco)
 }
 
 class Pessoa {
@@ -45,32 +44,30 @@ class Pessoa {
     -nome: String 
     -data_nascimento: Date
     -endereco: String  
-    +construct(nome, data_nascimento, endereco)
+    +construtor(nome, data_nascimento, endereco)
 }
 
 class Pessoa_Fisisca {
 
     -cpf: Int
-    +construct(pessoa, cpf)
-    +validar_cpf(cpf)
+    +construtor(cpf)
 }
 
 class Pessoa_Juridica {
     
     -cnpj: Int 
-    +construct(pessoa, cnpj)
-    +validar_cnpj(cnpj)
+    +construtor(cnpj)
 }
 
 
 Cinema <-- Salas
 Cinema <-- Ingresso 
-Salas <|-- Filme   
-Cinema <-- Pessoa 
+Salas -- Filme   
+Cinema -- Pessoa 
 Pessoa <|-- Pessoa_Fisisca
 Pessoa <|-- Pessoa_Juridica
-
-
+Pessoa -- Ingresso
+Salas -- Ingresso
 
 
 @enduml 

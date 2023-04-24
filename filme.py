@@ -1,13 +1,10 @@
 class Filme:
     
-    def __init__(self, titulo, duracao, categoria):
+    def __init__(self, titulo, duracao, categoria, classificacao):
         self.titulo = titulo
         self.duracao = duracao 
         self.categoria = categoria 
-        
+        self.classificacao = classificacao
 
-p = Filme('Vingadores', 120, 'herois' )
 
-print(f"{p.titulo}, {p.duracao}, {p.categoria}")
-    
-
+f = Filme('Vingadores', 120, 'Ação e aventura', '12 anos')

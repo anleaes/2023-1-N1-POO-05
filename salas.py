@@ -3,14 +3,25 @@ from filme import Filme
 
 class Salas:
 
-    def __init__(self, num_sala, poltrona, filme):
+    def __init__(self, num_sala, poltronas, filme=None):
         self.num_sala = num_sala
-        self.poltrona = poltrona 
-        self.filme = filme
+        self.poltronas = poltronas
+        self.filme = filme 
+
+    def exibir_filme(self):
+        if self.filme:
+            print('Filme em exibição:', self.filme.titulo)
+            print('Duração do filme: ', self.filme.duracao, 'minutos')
+            print('Categoria do filme: ', self.filme.categoria)
+            print('Classificação: ', self.filme.classificacao)
+            print('Sala de exibição: ', self.num_sala)
+            print('Poltronas disponiveis: ', self.poltronas)
+        else:
+            print('Nenhum filme em exibição.')
 
 
-p = Salas(7, 9, 'Vingadores' )
+s = Salas(7, 50)
+f = Filme('Vingadores', 120, 'Ação e aventura', '12 anos')
 
-print(f'{p.num_sala}, {p.poltrona}, {p.filme}')
-        
-    
+s.filme = f
+s.exibir_filme()
